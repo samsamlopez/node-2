@@ -59,7 +59,7 @@ module.exports = {
             res.status(200).json(db.users.data);
         }
     },
-    fetchPost: function(req, res){
+    fetchPostComment: function(req, res){
         const db = req.app.get('db')
         const {postId} = req.params
         const commentArr = []
@@ -76,7 +76,17 @@ module.exports = {
         }
         res.status(200).json(commentArr)
         
-    }
-
-
+    },
+    fetchPost: function(req, res) {
+        const db = req.app.get('db');
+        const { usersId } = req.params
+        let posts = [];
+        db.posts.data.map(post => {
+          if(post.userId === parseInt(usersId)){
+            posts.push(post);
+          }
+          return posts;
+        })
+        res.status(200).json(posts)
+      }
 }

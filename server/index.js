@@ -31,7 +31,8 @@ app.patch('/profile/:userId', signUp.update)
 app.post('/posts', signUp.post)
 app.post('/comments', signUp.comment)
 app.get('/profile', signUp.fetch)
-app.get('/posts/:postId', signUp.fetchPost)
+app.get('/posts/:postId', signUp.fetchPostComment)
+app.get('/user/:usersId/posts', signUp.fetchPost);
 
 app.listen(port, () => {
     console.log(`Server Listening on port : ${port}`);
